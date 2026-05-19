@@ -6,6 +6,7 @@
     <title>Soukoun Premium | سكينة</title>
     
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="logo.png">
     <meta name="theme-color" content="#10b981">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -645,14 +646,14 @@
             { id: 99, name: "إذاعة القرآن الكريم العامة", cat: "famous", desc: "بث إذاعي مباشر ومستمر لأجمل التلاوات", icon: "fa-solid fa-radio", isRadio: true, server: "https://qurango.net/radio/tarateel" },
             { id: 98, name: "إذاعة الشيخ ماهر المعيقلي", cat: "haram", desc: "بث مباشر متواصل لتلاوات الشيخ ماهر المعيقلي", icon: "fa-solid fa-tower-broadcast", isRadio: true, server: "https://qurango.net/radio/maher" },
             
-            // أئمة الحرم (Haram) - المصحف المرتل الكامل
+            // أئمة الحرم (Haram)
             { id: 2, name: "ماهر المعيقلي", cat: "haram", desc: "المصحف المرتل - صوت الحرم المكي", icon: "fa-solid fa-mosque", server: "https://server12.mp3quran.net/maher/" },
             { id: 3, name: "ياسر الدوسري", cat: "haram", desc: "المصحف المرتل - نبرة فريدة آثرة", icon: "fa-solid fa-gopuram", server: "https://server11.mp3quran.net/yasser/" },
             { id: 4, name: "عبد الرحمن السديس", cat: "haram", desc: "المصحف المرتل - رئيس أئمة الحرم المكي", icon: "fa-solid fa-kaaba", server: "https://server11.mp3quran.net/sds/" },
             { id: 14, name: "سعود الشريم", cat: "haram", desc: "المصحف المرتل - تلاوة حجازية رائعة", icon: "fa-solid fa-mosque", server: "https://server7.mp3quran.net/shur/" },
             { id: 15, name: "عبد الله عواد الجهني", cat: "haram", desc: "المصحف المرتل - إتقان وإحساس هادئ", icon: "fa-solid fa-kaaba", server: "https://server13.mp3quran.net/jhn/" },
 
-            // المشاهير (Famous) - مصاحف مرتلة كاملة
+            // المشاهير (Famous)
             { id: 0, name: "مشاري راشد العفاسي", cat: "famous", desc: "المصحف المرتل - عذوبة الصوت والإتقان", icon: "fa-solid fa-circle-nodes", server: "https://server8.mp3quran.net/afs/" },
             { id: 1, name: "ناصر القطامي", cat: "famous", desc: "المصحف المرتل - تلاوات تدبرية رائعة", icon: "fa-solid fa-heart", server: "https://server6.mp3quran.net/qtm/" },
             { id: 6, name: "محمد اللحيدان", cat: "famous", desc: "المصحف المرتل - صوت باكي ونبرة مؤثرة", icon: "fa-solid fa-bolt", server: "https://server8.mp3quran.net/lhdan/" },
@@ -696,9 +697,7 @@
 
             setTimeout(() => {
                 const splash = document.getElementById('appSplashScreen');
-                if (splash) {
-                    splash.classList.add('splash-hidden');
-                }
+                if (splash) splash.classList.add('splash-hidden');
             }, 3000); 
         };
 
@@ -801,13 +800,8 @@
             document.getElementById('deckReciterName').innerText = activeReciterObject.name;
             
             mediaEngine.play()
-            .then(() => {
-                deckPlayIcon.className = "fa-solid fa-pause";
-            })
-            .catch((err) => {
-                console.log("Audio live stream connected seamlessly.");
-                deckPlayIcon.className = "fa-solid fa-play";
-            });
+            .then(() => { deckPlayIcon.className = "fa-solid fa-pause"; })
+            .catch((err) => { deckPlayIcon.className = "fa-solid fa-play"; });
             
             document.querySelectorAll('.row-surah-item').forEach(r => r.classList.remove('active-playing'));
         }
@@ -861,12 +855,8 @@
             
             if (autoPlayIntent) {
                 mediaEngine.play()
-                .then(() => {
-                    deckPlayIcon.className = "fa-solid fa-pause";
-                })
-                .catch((err) => {
-                    console.log('Playback triggered natively by audio element.');
-                });
+                .then(() => { deckPlayIcon.className = "fa-solid fa-pause"; })
+                .catch((err) => { console.log('Playback error handled.'); });
             } else {
                 deckPlayIcon.className = "fa-solid fa-play";
             }
@@ -902,11 +892,8 @@
             isLoopActive = !isLoopActive;
             mediaEngine.loop = isLoopActive;
             
-            if (isLoopActive) {
-                btnTrackLoop.classList.add('loop-active');
-            } else {
-                btnTrackLoop.classList.remove('loop-active');
-            }
+            if (isLoopActive) btnTrackLoop.classList.add('loop-active');
+            else btnTrackLoop.classList.remove('loop-active');
         }
 
         mediaEngine.addEventListener('timeupdate', () => {
@@ -922,18 +909,13 @@
             }
         });
 
-        /* ==========================================
-           أكواد الـ PWA والتحكم من شريط الإشعارات (Media Session)
-           ========================================== */
-
-        // 1. تسجيل الـ Service Worker لتشغيل التطبيق في الخلفية والتثبيت
+        /* PWA ENGINE AND MEDIA SESSIONS CODE */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
-            .then(() => console.log('Service Worker Registered Successfully!'))
-            .catch(err => console.log('Service Worker Registration Failed:', err));
+            .then(() => console.log('SW Registered.'))
+            .catch(err => console.log('SW Failed.', err));
         }
 
-        // 2. تحديث بيانات الإشعارات عند تغيير السورة أو القارئ
         function updateNotificationBarEngine() {
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.metadata = new MediaMetadata({
@@ -945,17 +927,15 @@
                     ]
                 });
 
-                // ربط أزرار شريط الإشعارات بأزرار تطبيقك الحقيقية
                 navigator.mediaSession.setActionHandler('play', () => { handlePlayPauseClick(); });
                 navigator.mediaSession.setActionHandler('pause', () => { handlePlayPauseClick(); });
                 navigator.mediaSession.setActionHandler('nexttrack', () => { triggerNextTrack(); });
             }
         }
 
-        // ربط أحداث محرك الصوت لتغيير شكل الإشعارات تلقائياً برة التطبيق
         mediaEngine.addEventListener('play', () => {
             deckPlayIcon.className = "fa-solid fa-pause";
-            updateNotificationBarEngine(); // تحديث شريط الإشعارات أول ما يشتغل الصوت
+            updateNotificationBarEngine();
         });
 
         mediaEngine.addEventListener('pause', () => {
@@ -964,3 +944,4 @@
     </script>
 </body>
 </html>
+
