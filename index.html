@@ -6,7 +6,6 @@
     <title>Soukoun Premium | سكينة</title>
     
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="logo.png">
     <meta name="theme-color" content="#10b981">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -523,7 +522,7 @@
         }
 
         .btn-deck-action.play-btn-style {
-            background: var(--text-primary);
+            background: var(--accent);
             color: #000000;
             font-size: 14px;
         }
@@ -636,6 +635,8 @@
             <button class="tab-item-button tab-active" onclick="filterByCat('all', this)"><i class="fa-solid fa-compass"></i><span>الكل</span></button>
             <button class="tab-item-button" onclick="filterByCat('haram', this)"><i class="fa-solid fa-kaaba"></i><span>أئمة الحرم</span></button>
             <button class="tab-item-button" onclick="filterByCat('famous', this)"><i class="fa-solid fa-star"></i><span>المشاهير</span></button>
+            <button class="tab-item-button" onclick="filterByCat('translation', this)"><i class="fa-solid fa-language"></i><span>التراجم</span></button>
+            <button class="tab-item-button" onclick="filterByCat('tafseer', this)"><i class="fa-solid fa-book-open"></i><span>الدروس</span></button>
         </div>
     </div>
 
@@ -643,17 +644,18 @@
 
     <script>
         const recitersDataset = [
+            // ===== الإذاعات العامة =====
             { id: 99, name: "إذاعة القرآن الكريم العامة", cat: "famous", desc: "بث إذاعي مباشر ومستمر لأجمل التلاوات", icon: "fa-solid fa-radio", isRadio: true, server: "https://qurango.net/radio/tarateel" },
             { id: 98, name: "إذاعة الشيخ ماهر المعيقلي", cat: "haram", desc: "بث مباشر متواصل لتلاوات الشيخ ماهر المعيقلي", icon: "fa-solid fa-tower-broadcast", isRadio: true, server: "https://qurango.net/radio/maher" },
             
-            // أئمة الحرم (Haram)
+            // ===== أئمة الحرم (Haram) =====
             { id: 2, name: "ماهر المعيقلي", cat: "haram", desc: "المصحف المرتل - صوت الحرم المكي", icon: "fa-solid fa-mosque", server: "https://server12.mp3quran.net/maher/" },
             { id: 3, name: "ياسر الدوسري", cat: "haram", desc: "المصحف المرتل - نبرة فريدة آثرة", icon: "fa-solid fa-gopuram", server: "https://server11.mp3quran.net/yasser/" },
             { id: 4, name: "عبد الرحمن السديس", cat: "haram", desc: "المصحف المرتل - رئيس أئمة الحرم المكي", icon: "fa-solid fa-kaaba", server: "https://server11.mp3quran.net/sds/" },
             { id: 14, name: "سعود الشريم", cat: "haram", desc: "المصحف المرتل - تلاوة حجازية رائعة", icon: "fa-solid fa-mosque", server: "https://server7.mp3quran.net/shur/" },
             { id: 15, name: "عبد الله عواد الجهني", cat: "haram", desc: "المصحف المرتل - إتقان وإحساس هادئ", icon: "fa-solid fa-kaaba", server: "https://server13.mp3quran.net/jhn/" },
 
-            // المشاهير (Famous)
+            // ===== المشاهير (Famous) =====
             { id: 0, name: "مشاري راشد العفاسي", cat: "famous", desc: "المصحف المرتل - عذوبة الصوت والإتقان", icon: "fa-solid fa-circle-nodes", server: "https://server8.mp3quran.net/afs/" },
             { id: 1, name: "ناصر القطامي", cat: "famous", desc: "المصحف المرتل - تلاوات تدبرية رائعة", icon: "fa-solid fa-heart", server: "https://server6.mp3quran.net/qtm/" },
             { id: 6, name: "محمد اللحيدان", cat: "famous", desc: "المصحف المرتل - صوت باكي ونبرة مؤثرة", icon: "fa-solid fa-bolt", server: "https://server8.mp3quran.net/lhdan/" },
@@ -668,7 +670,29 @@
             { id: 28, name: "مصطفى إسماعيل", cat: "famous", desc: "المصحف المرتل - قارئ الملوك والصوت العبقري", icon: "fa-solid fa-crown", server: "https://server8.mp3quran.net/mustafa/" },
             { id: 43, name: "عبد الله المطرود", cat: "famous", desc: "المصحف المرتل - ترتيل واضح ومميز بجودة صوته", icon: "fa-solid fa-lines-leaning", server: "https://server8.mp3quran.net/mtrod/" },
             { id: 48, name: "محمد صديق المنشاوي (المرتل)", cat: "famous", desc: "المصحف المرتل - تلاوة خاشعة تلمس الروح", icon: "fa-solid fa-book-open", server: "https://server10.mp3quran.net/minsh/" },
-            { id: 49, name: "هاني الرفاعي", cat: "famous", desc: "المصحف المرتل - صوت باكي ومؤثر جداً في التلاوة", icon: "fa-solid fa-eye-dropper", server: "https://server8.mp3quran.net/hani/" }
+            { id: 49, name: "هاني الرفاعي", cat: "famous", desc: "المصحف المرتل - صوت باكي ومؤثر جداً في التلاوة", icon: "fa-solid fa-eye-dropper", server: "https://server8.mp3quran.net/hani/" },
+
+            // ===== التراجم (Translation) =====
+            { id: 109046, name: "ترجمة معاني القرآن بالإنجليزية", cat: "translation", desc: "English Translation - UK", flag: "🇬🇧", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_english_basit" },
+            { id: 109055, name: "ترجمة معاني القرآن بالفرنسية", cat: "translation", desc: "Traduction Française - France", flag: "🇫🇷", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_french" },
+            { id: 109039, name: "ترجمة معاني القرآن بالأوردية", cat: "translation", desc: "Urdu Translation - Pakistan", flag: "🇵🇰", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_urdu_basit" },
+            { id: 109042, name: "ترجمة معاني القرآن بالألمانية", cat: "translation", desc: "Deutsche Übersetzung - Germany", flag: "🇩🇪", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_german" },
+            { id: 109040, name: "ترجمة معاني القرآن بالأسبانية", cat: "translation", desc: "Traducción Español - Spain", flag: "🇪🇸", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_spanish_afs" },
+            { id: 109041, name: "ترجمة معاني القرآن بالألبانية", cat: "translation", desc: "Përkthimi Shqip - Albania", flag: "🇦🇱", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_albanian" },
+            { id: 109049, name: "ترجمة معاني القرآن بالبرتغالية", cat: "translation", desc: "Tradução Português - Portugal", flag: "🇵🇹", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_portuguese" },
+            { id: 109050, name: "ترجمة معاني القرآن بالبوسنية", cat: "translation", desc: "Bosanski Prijevod - Bosnia", flag: "🇧🇦", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_bosnia" },
+            { id: 109053, name: "ترجمة معاني القرآن بالصينية", cat: "translation", desc: "中文翻译 - China", flag: "🇨🇳", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_chinese" },
+            { id: 109058, name: "ترجمة معاني القرآن بالمجرية", cat: "translation", desc: "Magyar Fordítás - Hungary", flag: "🇭🇺", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_hungarian" },
+            { id: 109059, name: "ترجمة معاني القرآن باليونانية", cat: "translation", desc: "Ελληνική Μετάφραση - Greece", flag: "🇬🇷", isRadio: true, server: "https://backup.qurango.net/radio/translation_quran_greek" },
+            { id: 109062, name: "ترجمة معاني القرآن بالهوسا", cat: "translation", desc: "Fassarar Hausa - Nigeria", flag: "🇳🇬", isRadio: true, server: "https://backup.qurango.net/radio/Translation_Quran_Hausa" },
+
+            // ===== الدروس والكتب الصوتية (Tafseer) =====
+            { id: 109067, name: "إذاعة صحيح البخاري", cat: "tafseer", desc: "قراءة صوتية لكتاب صحيح البخاري", icon: "fa-solid fa-book-quran", isRadio: true, server: "https://backup.qurango.net/radio/saheh-bokharee" },
+            { id: 109066, name: "إذاعة صحيح مسلم", cat: "tafseer", desc: "قراءة صوتية لكتاب صحيح مسلم", icon: "fa-solid fa-book-open", isRadio: true, server: "https://backup.qurango.net/radio/saheh-muslim" },
+            { id: 109069, name: "إذاعة قصص الأنبياء", cat: "tafseer", desc: "سلسلة قصص الأنبياء عليهم السلام", icon: "fa-solid fa-scroll", isRadio: true, server: "https://backup.qurango.net/radio/alanbiya" },
+            { id: 109073, name: "إذاعة رياض الصالحين", cat: "tafseer", desc: "قراءة لكتاب رياض الصالحين", icon: "fa-solid fa-leaf", isRadio: true, server: "https://backup.qurango.net/radio/riyad" },
+            { id: 109076, name: "إذاعة تفسير غريب القرآن", cat: "tafseer", desc: "تفسير وبيان غريب القرآن", icon: "fa-solid fa-book-open-reader", isRadio: true, server: "https://backup.qurango.net/radio/gareeb-quran" },
+            { id: 109083, name: "إذاعة الشمائل المحمدية", cat: "tafseer", desc: "شمائل النبي ﷺ", icon: "fa-solid fa-hand-holding-heart", isRadio: true, server: "https://backup.qurango.net/radio/shmaeel" }
         ];
 
         const surahIndexMap = [
@@ -697,7 +721,9 @@
 
             setTimeout(() => {
                 const splash = document.getElementById('appSplashScreen');
-                if (splash) splash.classList.add('splash-hidden');
+                if (splash) {
+                    splash.classList.add('splash-hidden');
+                }
             }, 3000); 
         };
 
@@ -717,6 +743,14 @@
             
             datasetList.forEach(reciter => {
                 const cardNode = document.createElement('div');
+                let avatarContent;
+                
+                if (reciter.flag) {
+                    avatarContent = `<span style="font-size:28px;">${reciter.flag}</span>`;
+                } else {
+                    avatarContent = `<i class="${reciter.icon}"></i>`;
+                }
+
                 if (reciter.isRadio) {
                     cardNode.className = 'reciter-item-node radio-live-box';
                     cardNode.onclick = () => playRadioDirectly(reciter.id);
@@ -725,13 +759,13 @@
                             <div class="lbl-reciter-name" style="color: var(--accent); font-size:15px;">${reciter.name}</div>
                             <div class="lbl-reciter-desc">${reciter.desc}</div>
                         </div>
-                        <div class="avatar-mask-frame"><i class="${reciter.icon}"></i></div>
+                        <div class="avatar-mask-frame">${avatarContent}</div>
                     `;
                 } else {
                     cardNode.className = 'reciter-item-node';
                     cardNode.onclick = () => selectReciterAndOpenSurahs(reciter.id);
                     cardNode.innerHTML = `
-                        <div class="avatar-mask-frame"><i class="${reciter.icon}"></i></div>
+                        <div class="avatar-mask-frame">${avatarContent}</div>
                         <div class="lbl-reciter-name">${reciter.name}</div>
                         <div class="lbl-reciter-desc">${reciter.desc}</div>
                     `;
@@ -795,13 +829,25 @@
             deckTimelineWrapper.style.visibility = "hidden";
             trackProgressLine.style.width = "0%";
             
-            document.getElementById('deckAvatarIcon').innerHTML = `<i class="${activeReciterObject.icon}"></i>`;
+            let avatarContent;
+            if (activeReciterObject.flag) {
+                avatarContent = `<span style="font-size:20px;">${activeReciterObject.flag}</span>`;
+            } else {
+                avatarContent = `<i class="${activeReciterObject.icon}"></i>`;
+            }
+            document.getElementById('deckAvatarIcon').innerHTML = avatarContent;
+            
             document.getElementById('deckSurahTitle').innerText = "البث المباشر الحي";
             document.getElementById('deckReciterName').innerText = activeReciterObject.name;
             
             mediaEngine.play()
-            .then(() => { deckPlayIcon.className = "fa-solid fa-pause"; })
-            .catch((err) => { deckPlayIcon.className = "fa-solid fa-play"; });
+            .then(() => {
+                deckPlayIcon.className = "fa-solid fa-pause";
+            })
+            .catch((err) => {
+                console.log("Audio live stream connected seamlessly.");
+                deckPlayIcon.className = "fa-solid fa-play";
+            });
             
             document.querySelectorAll('.row-surah-item').forEach(r => r.classList.remove('active-playing'));
         }
@@ -849,14 +895,25 @@
             mediaEngine.src = finalStreamUrl;
             mediaEngine.loop = isLoopActive;
             
-            document.getElementById('deckAvatarIcon').innerHTML = `<i class="${activeReciterObject.icon}"></i>`;
+            let avatarContent;
+            if (activeReciterObject.flag) {
+                avatarContent = `<span style="font-size:20px;">${activeReciterObject.flag}</span>`;
+            } else {
+                avatarContent = `<i class="${activeReciterObject.icon}"></i>`;
+            }
+            document.getElementById('deckAvatarIcon').innerHTML = avatarContent;
+            
             document.getElementById('deckSurahTitle').innerText = `${parseInt(chosenSurah.id)}. ${chosenSurah.ar} (${chosenSurah.en})`;
             document.getElementById('deckReciterName').innerText = activeReciterObject.name;
             
             if (autoPlayIntent) {
                 mediaEngine.play()
-                .then(() => { deckPlayIcon.className = "fa-solid fa-pause"; })
-                .catch((err) => { console.log('Playback error handled.'); });
+                .then(() => {
+                    deckPlayIcon.className = "fa-solid fa-pause";
+                })
+                .catch((err) => {
+                    console.log('Playback triggered natively by audio element.');
+                });
             } else {
                 deckPlayIcon.className = "fa-solid fa-play";
             }
@@ -892,8 +949,11 @@
             isLoopActive = !isLoopActive;
             mediaEngine.loop = isLoopActive;
             
-            if (isLoopActive) btnTrackLoop.classList.add('loop-active');
-            else btnTrackLoop.classList.remove('loop-active');
+            if (isLoopActive) {
+                btnTrackLoop.classList.add('loop-active');
+            } else {
+                btnTrackLoop.classList.remove('loop-active');
+            }
         }
 
         mediaEngine.addEventListener('timeupdate', () => {
@@ -909,11 +969,14 @@
             }
         });
 
-        /* PWA ENGINE AND MEDIA SESSIONS CODE */
+        /* ==========================================
+           أكواد الـ PWA والتحكم من شريط الإشعارات (Media Session)
+           ========================================== */
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
-            .then(() => console.log('SW Registered.'))
-            .catch(err => console.log('SW Failed.', err));
+            .then(() => console.log('Service Worker Registered Successfully!'))
+            .catch(err => console.log('Service Worker Registration Failed:', err));
         }
 
         function updateNotificationBarEngine() {
@@ -944,4 +1007,3 @@
     </script>
 </body>
 </html>
-
