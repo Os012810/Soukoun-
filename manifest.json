@@ -1,9 +1,10 @@
 {
   "name": "Soukoun",
-  "short_name": "Soukoun",
+  "short_name": "سكينة",
   "description": "منصة التلاوات الخاشعة الممتازة",
   "start_url": "./",
-  "display": "standalone",
+  "display": "fullscreen",
+  "orientation": "portrait",
   "background_color": "#000000",
   "theme_color": "#10b981",
   "icons": [
