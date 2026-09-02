@@ -8,13 +8,13 @@
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "./1788263438811.png",
+      "src": "https://os012810.github.io/Soukoun-/1788263438811.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./1788263438811.png",
+      "src": "https://os012810.github.io/Soukoun-/1788263438811.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
