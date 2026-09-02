@@ -4,17 +4,17 @@
   "description": "منصة التلاوات الخاشعة الممتازة",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#000000",
+  "theme_color": "#10b981",
   "icons": [
     {
-      "src": "https://os012810.github.io/Soukoun-/1788263438811.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/2907/2907240.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://os012810.github.io/Soukoun-/1788263438811.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/2907/2907240.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
