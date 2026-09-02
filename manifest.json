@@ -1,19 +1,23 @@
 {
-  "name": "Soukoun Premium",
+  "name": "Soukoun",
   "short_name": "Soukoun",
   "description": "منصة التلاوات الخاشعة الممتازة",
-  "start_url": "index.html",
-  "display": "fullscreen",
-  "background_color": "#000000",
-  "theme_color": "#10b981",
-  "orientation": "portrait",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "1788263438811.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "1788263438811.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
-
